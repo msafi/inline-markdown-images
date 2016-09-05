@@ -2,7 +2,7 @@
 
 Inlines images for Markdown documents
 
-![Preview](./preview.gif)
+![Preview](https://raw.githubusercontent.com/some-atom/inline-markdown-images/master/preview.gif)
 
 ## License
 
