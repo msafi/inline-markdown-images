@@ -1,0 +1,11 @@
+{
+  "name": "inline-markdown-images",
+  "main": "index.js",
+  "version": "0.0.1",
+  "description": "Inline markdown images",
+  "repository": "https://github.com/some-atom/inline-markdown-images",
+  "license": "CC0",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  }
+}
