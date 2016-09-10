@@ -1,9 +1,12 @@
 'use babel'
 
+import path from 'path'
+
 const imageStyle = `max-width: 100%;`
 const imageContainerStyle = `text-align: center; padding: 5px; display: none;`
-const allMarkdownImagesRegExp = /^!\[[^\]]+\]\([^)]+\)$/g
-const markdownImageLinkCaptureGroupRegExp = /!\[[^\]]+\]\(([^)]+)\)/
+const allMarkdownImagesRegExp = /^!\[[^\]\n]*\]\([^)\n]+\)$/g
+const markdownImageLinkCaptureGroupRegExp = /^!\[[^\]\n]*\]\(([^)\n]+)\)$/
+const networkPathRegExp = /^(?:[a-z]+:)?\/\//i
 const strInside = 'inside'
 const strBefore = 'before'
 const strBlock = 'block'
@@ -35,6 +38,9 @@ export default {
 
       if (!hitIsMarked) {
         const link = hit.matchText.match(markdownImageLinkCaptureGroupRegExp)[1]
+        const finalLink = (isNetworkPath(link) || path.isAbsolute(link)) ?
+          link :
+          path.join(path.dirname(editor.buffer.file.path), link)
         const imageContainer = document.createElement(strDiv)
         const image = document.createElement(strImg)
         const marker = editor.markBufferRange(hit.computedRange, objInvalidate)
@@ -43,7 +49,7 @@ export default {
         imageContainer.style = imageContainerStyle
 
         image.style = imageStyle
-        image.src = link
+        image.src = finalLink
         image.onload = () => imageContainer.style.display = strBlock
 
         marker.bufferMarker.setProperties(objIsImiMarker)
@@ -66,4 +72,8 @@ export default {
 
 function isImiMarker(marker) {
   return marker.bufferMarker && marker.bufferMarker.properties.isImiMarker
+}
+
+function isNetworkPath(path) {
+  return networkPathRegExp.test(path)
 }
