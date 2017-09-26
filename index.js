@@ -12,7 +12,7 @@ const strBefore = 'before'
 const strBlock = 'block'
 const strDiv = 'div'
 const strImg = 'img'
-const strGithubMarkdown = 'GitHub Markdown'
+const arrGithubMarkdown = ['GitHub Markdown','Markdown']
 const objIsImiMarker = {isImiMarker: true}
 const objInvalidate = {invalidate: strInside}
 
@@ -61,7 +61,8 @@ export default {
 
   activate() {
     atom.workspace.observeTextEditors((editor) => {
-      if (editor.getGrammar().name === strGithubMarkdown) {
+      // if (editor.getGrammar().name === arrGithubMarkdown) {
+      if (arrGithubMarkdown.includes(editor.getGrammar().name)) {
         this.processTextBuffer(editor)
 
         editor.onDidStopChanging(this.processTextBuffer.bind(null, editor))
