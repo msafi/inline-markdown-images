@@ -33,7 +33,7 @@ export default {
 
     return editor.scan(allMarkdownImagesRegExp, (hit) => {
       const hitIsMarked = !!currentValidMarkers.find((marker) => {
-        return hit.computedRange.start.row == marker.getBufferRange().start.row
+        return hit.range.start.row == marker.getBufferRange().start.row
       })
 
       if (!hitIsMarked) {
@@ -43,7 +43,7 @@ export default {
           path.join(path.dirname(editor.buffer.file.path), link)
         const imageContainer = document.createElement(strDiv)
         const image = document.createElement(strImg)
-        const marker = editor.markBufferRange(hit.computedRange, objInvalidate)
+        const marker = editor.markBufferRange(hit.range, objInvalidate)
 
         imageContainer.appendChild(image)
         imageContainer.style = imageContainerStyle
