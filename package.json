@@ -1,7 +1,7 @@
 {
   "name": "inline-markdown-images",
   "main": "index.js",
-  "version": "0.1.0",
+  "version": "1.3.0",
   "description": "Inline markdown images",
   "repository": "https://github.com/msafi/inline-markdown-images",
   "license": "CC0",
