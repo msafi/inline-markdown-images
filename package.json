@@ -3,7 +3,7 @@
   "main": "index.js",
   "version": "1.11.0",
   "description": "Inline markdown images",
-  "repository": "https://github.com/msafi/inline-markdown-images",
+  "repository": "https://github.com/some-atom/inline-markdown-images",
   "license": "CC0",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
